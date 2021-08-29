@@ -17,3 +17,9 @@ release_client = connection.clients.get_release_client()
 #print(releaseStartMetadata)
 projectDefinition = release_client.get_release_definition(project='GitRepos', definition_id=projectDefinitionId)
 print(projectDefinition)
+
+statusLed = LEDBoard(red=4, pwm=True)
+statusLed.on()
+sleep(3)
+statusLed.off()
+
