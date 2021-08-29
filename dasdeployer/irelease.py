@@ -4,7 +4,7 @@ from gpiozero import LEDBoard, ButtonBoard, Button
 import pprint
 
 # Fill in with your personal access token and org URL
-personal_access_token = 'ilykq7ypqmledu64xxrthio6cja4anmtiihx4iobf54xqprpdlga'
+personal_access_token = 'nope'
 organization_url = 'https://dev.azure.com/revlocal'
 projectDefinitionId = 140
 
