@@ -1,8 +1,12 @@
+print('Initializing')
+
 from azure.devops.connection import Connection
 from msrest.authentication import BasicAuthentication
 from azure.devops.v5_1.release.models import BuildVersion, ArtifactMetadata, ReleaseStartMetadata
 from gpiozero import LED, Button
+from signal import pause
 import pprint
+import time
 
 # Fill in with your personal access token and org URL
 personal_access_token = 'ilykq7ypqmledu64xxrthio6cja4anmtiihx4iobf54xqprpdlga'
@@ -11,19 +15,19 @@ projectName = 'GitRepos'
 projectDefinitionId = 140
 
 # Assign pins to our LEDS
-greenLed = LED(4)
-blueLed = LED(17)
+blueLed = LED(4)
+greenLed = LED(17)
 button = Button(2)
 
 # Device is on so we turn green
-greenLed.on()
+blueLed.on()
 
 def createRelease():
     print("Button was pressed")
 
     # Device is running release so we turn blue
-    greenLed.off()
-    blueLed.blink()
+    blueLed.off()
+    greenLed.blink()
 
     # Create a connection to the org
     print('Create connection...')
@@ -43,7 +47,11 @@ def createRelease():
     print(response)
 
     # Device triggered build now we wait
-    blueLed.off()
-    greenLed.on()
+    greenLed.off()
+    blueLed.on()
 
-button.when_pressed = createRelease
+while True:
+    if button.is_pressed:
+        createRelease()
+    else:
+        print('Waiting for button press')
